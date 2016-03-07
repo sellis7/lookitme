@@ -17,11 +17,7 @@ RSpec.describe GramsController, type: :controller do
 		end
 
 		it "should successfully show new form" do
-			user = User.create(
-				email: 'test.test@gmail.com',
-				password: 'testtest',
-				password_confirmation: 'testtest'
-			)
+			user = FactoryGirl.create(:user)
 			sign_in user
 			get :new
 			expect(response).to have_http_status(:success)
@@ -37,12 +33,9 @@ RSpec.describe GramsController, type: :controller do
 		end
 
 		it "should successfully create new gram in db" do
-			user = User.create(
-				email: 'test.test@gmail.com',
-				password: 'testtest',
-				password_confirmation: 'testtest'
-			)
+			user = FactoryGirl.create(:user)
 			sign_in user
+
 			post :create, gram: { message: 'Hello!' }
 			expect(response).to redirect_to root_path
 			gram = Gram.last
@@ -51,12 +44,9 @@ RSpec.describe GramsController, type: :controller do
 		end
 
 		it "should properly validate errors" do
-			user = User.create(
-				email: 'test.test@gmail.com',
-				password: 'testtest',
-				password_confirmation: 'testtest'
-			)
+			user = FactoryGirl.create(:user)
 			sign_in user
+
 			post :create, gram: { message: '' }
 			expect(response).to have_http_status(:unprocessable_entity)
 			expect(Gram.count).to eq 0

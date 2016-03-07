@@ -44,14 +44,13 @@ gem 'devise', '>= 3.2.4'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# FactoryGirl for quick factories application
-gem 'factory_girl_rails', '~> 4.0'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'shoulda', '~> 3.5'
   gem 'rspec-rails', '~> 3.0'
+  # FactoryGirl for quick factories application
+  gem 'factory_girl_rails', '~> 4.0', :require => false
 end
 
 group :development do
